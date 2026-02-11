@@ -21,7 +21,7 @@ Aplicacion web construida con Next.js 15, React 19 y Supabase. Incluye autentica
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/adrianaalfonzodev/api-login-demo.git
+git clone https://github.com/adrianaalfonzodev/nextjs-atomic-dashboard.git
 cd api-login-demo
 ```
 
