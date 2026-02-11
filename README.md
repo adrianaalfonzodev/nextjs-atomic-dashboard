@@ -48,10 +48,10 @@ Variables requeridas:
 
 ## Usuario de prueba
 
-| Campo | Valor |
-|---|---|
+| Campo | Valor              |
+| ----- | ------------------ |
 | Email | `user@example.com` |
-| Clave | `password` |
+| Clave | `password`         |
 
 ## Ejecucion
 
