@@ -22,7 +22,7 @@ Aplicacion web construida con Next.js 15, React 19 y Supabase. Incluye autentica
 
 ```bash
 git clone https://github.com/adrianaalfonzodev/nextjs-atomic-dashboard.git
-cd api-login-demo
+cd nextjs-atomic-dashboard
 ```
 
 2. Instalar dependencias:
