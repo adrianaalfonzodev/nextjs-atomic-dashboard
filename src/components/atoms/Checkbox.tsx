@@ -6,13 +6,13 @@ type AppCheckboxProps = {
   required?: boolean
 }
 
-const AppCheckbox = ({
+export default function AppCheckbox({
   label,
   checked,
   onChange,
   name,
   required = false,
-}: AppCheckboxProps) => {
+}: AppCheckboxProps) {
   return (
     <label className="flex items-center space-x-2 text-sm cursor-pointer select-none">
       <input
@@ -27,5 +27,3 @@ const AppCheckbox = ({
     </label>
   )
 }
-
-export default AppCheckbox

@@ -1,22 +1,20 @@
 'use client'
-import {
-  authStart,
-  authSuccess,
-  authFailure
-} from '@/lib/features/auth/authSlice'
+
+import { authStart, authSuccess, authFailure } from '@/features/auth/authSlice'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { registerUser } from '@/lib/features/auth/auth'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/lib/store'
-import AppInput from '../ui/Input'
-import Image from 'next/image'
+import { registerUser } from '@/features/auth/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
+import AppInput from '@/components/atoms/Input'
+import AppCheckbox from '@/components/atoms/Checkbox'
+import Button from '@/components/atoms/Button'
+import Divider from '@/components/atoms/Divider'
+import SocialLoginButton from '@/components/molecules/SocialLoginButton'
 import Link from 'next/link'
-import AppCheckbox from '../ui/CheckBox'
 
-const RegisterForm = () => {
+export default function RegisterForm() {
   const dispatch = useDispatch()
   const loading = useSelector((state: RootState) => state.auth.loading)
   const router = useRouter()
@@ -89,40 +87,26 @@ const RegisterForm = () => {
           required
         />
 
-        <button
+        <Button
+          variant="primary"
           type="submit"
-          className={`button transition-opacity duration-200 ${
-            loading ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
-          disabled={loading}
+          loading={loading}
         >
           Registrarse
-        </button>
+        </Button>
       </form>
-      <div className="flex items-center my-2">
-        <hr className="flex-grow-1 text-gray-300" />
-        <span className="mx-2 text-2 text-muted">Ó</span>
-        <hr className="flex-grow-1 text-gray-300" />
-      </div>
 
-      <button
-        className="social-button relative w-full"
+      <Divider text="Ó" />
+
+      <SocialLoginButton
+        provider="google"
         onClick={handleGoogleRegister}
-      >
-        <div className="w-6 h-6 absolute">
-          <Image
-            src="/icons/Google_Favicon_2025.png"
-            alt="logo"
-            fill={true}
-          />
-        </div>
-        <span className="flex-1">Continuar con google</span>
-      </button>
+      />
 
       <p className="text-center text-sm mt-6">
         ¿Ya tienes una cuenta?{' '}
         <Link
-          href="/login"
+          href="/auth/login"
           className="text-[#E89B4C]"
         >
           Iniciar sesión
@@ -131,5 +115,3 @@ const RegisterForm = () => {
     </div>
   )
 }
-
-export default RegisterForm

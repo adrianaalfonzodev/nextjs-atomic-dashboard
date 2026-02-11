@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '@/lib/store'
-import { authSuccess, logout } from '@/lib/features/auth/authSlice'
-import { supabase } from '@/lib/api'
+import { RootState } from '@/store/store'
+import { authSuccess, logout } from '@/features/auth/authSlice'
+import { supabase } from '@/lib/supabase'
 
 export function useAuthCheck(options?: { redirectIfAuthenticated?: boolean }) {
   const { redirectIfAuthenticated = false } = options || {}

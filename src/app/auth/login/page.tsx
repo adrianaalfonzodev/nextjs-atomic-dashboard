@@ -1,15 +1,15 @@
 'use client'
 
-import LoginForm from '@/components/authForm/LoginForm'
-import AuthLayout from '@/components/layouts/AuthLayout'
+import LoginForm from '@/components/organisms/LoginForm'
+import AuthTemplate from '@/components/templates/AuthTemplate'
 
 export default function LoginPage() {
   return (
-    <AuthLayout
+    <AuthTemplate
       title="Bienvenido al Centro de Mando"
       subtitle="Inicia sesión para comenzar tu viaje por el universo"
     >
       <LoginForm />
-    </AuthLayout>
+    </AuthTemplate>
   )
 }

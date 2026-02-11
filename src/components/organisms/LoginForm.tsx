@@ -1,22 +1,19 @@
 'use client'
 
-import {
-  authStart,
-  authSuccess,
-  authFailure
-} from '@/lib/features/auth/authSlice'
+import { authStart, authSuccess, authFailure } from '@/features/auth/authSlice'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { loginUser } from '@/lib/features/auth/auth'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/lib/store'
-import AppInput from '../ui/Input'
-import Image from 'next/image'
+import { loginUser } from '@/features/auth/auth'
+import { RootState } from '@/store/store'
+import AppInput from '@/components/atoms/Input'
+import Button from '@/components/atoms/Button'
+import Divider from '@/components/atoms/Divider'
+import SocialLoginButton from '@/components/molecules/SocialLoginButton'
 import Link from 'next/link'
 
-const LoginForm = () => {
+export default function LoginForm() {
   const dispatch = useDispatch()
   const loading = useSelector((state: RootState) => state.auth.loading)
   const router = useRouter()
@@ -69,6 +66,7 @@ const LoginForm = () => {
           onChange={setPassword}
           placeholder="Contraseña"
           required
+          showPasswordToggle
         />
 
         <a
@@ -78,40 +76,26 @@ const LoginForm = () => {
           ¿Olvidaste la contraseña?
         </a>
 
-        <button
+        <Button
+          variant="primary"
           type="submit"
-          className={`button transition-opacity duration-200 ${
-            loading ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
-          disabled={loading}
+          loading={loading}
         >
           Iniciar sesión
-        </button>
+        </Button>
       </form>
-      <div className="flex items-center my-2">
-        <hr className="flex-grow-1 text-gray-300" />
-        <span className="mx-2 text-2 text-muted">Ó</span>
-        <hr className="flex-grow-1 text-gray-300" />
-      </div>
 
-      <button
-        className="social-button relative w-full"
+      <Divider text="Ó" />
+
+      <SocialLoginButton
+        provider="google"
         onClick={handleGoogleLogin}
-      >
-        <div className="w-6 h-6 absolute">
-          <Image
-            src="/icons/Google_Favicon_2025.png"
-            alt="logo"
-            fill={true}
-          />
-        </div>
-        <span className="flex-1">Continuar con google</span>
-      </button>
+      />
 
       <p className="text-center text-sm mt-6">
         ¿No tienes cuenta?{' '}
         <Link
-          href="/register"
+          href="/auth/register"
           className="text-[#E89B4C]"
         >
           Crear una cuenta
@@ -120,5 +104,3 @@ const LoginForm = () => {
     </div>
   )
 }
-
-export default LoginForm

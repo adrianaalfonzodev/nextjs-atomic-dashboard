@@ -1,12 +1,12 @@
 'use client'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '@/lib/store'
+import { RootState } from '@/store/store'
 import { useState } from 'react'
-import { supabase } from '@/lib/api'
+import { supabase } from '@/lib/supabase'
 import { toast } from 'sonner'
-import { authSuccess, authFailure } from '@/lib/features/auth/authSlice'
-import { Save } from 'lucide-react'
+import { authSuccess, authFailure } from '@/features/auth/authSlice'
+import ProfileForm from '@/components/organisms/ProfileForm'
 
 export default function ProfilePage() {
   const dispatch = useDispatch()
@@ -49,52 +49,14 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="max-w-xl p-6 bg-white rounded-lg">
-      <h1 className="text-4xl font-bold mb-6">Detalles del usuario</h1>
-
-      <form onSubmit={handleSave} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
-          <input
-            type="email"
-            value={email}
-            disabled
-            className="w-full border px-3 py-2 rounded bg-gray-100 text-gray-500 cursor-not-allowed"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
-          <input
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            required
-          />
-        </div>
-
-        <div className='mb-8'>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
-          <input
-            type="tel"
-            value={phone}
-            onChange={e => setPhone(e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className={`button transition-opacity duration-200 flex gap-2${
-            loading ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
-          disabled={loading}
-        >
-            <Save/>
-          {loading ? 'Guardando...' : 'Guardar cambios'}
-        </button>
-      </form>
-    </div>
+    <ProfileForm
+      email={email}
+      name={name}
+      phone={phone}
+      loading={loading}
+      onNameChange={setName}
+      onPhoneChange={setPhone}
+      onSave={handleSave}
+    />
   )
 }

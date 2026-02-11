@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/api'
+import { supabase } from '@/lib/supabase'
 
 export async function loginUser(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -28,21 +28,21 @@ export async function registerUser(
   name: string,
   phone: string
 ) {
-const { data, error } = await supabase.auth.signUp({
-  email: email.trim().toLowerCase(),
-  password,
-  options: {
-    data: {
-      name,
-      phone,
-    },
-  },
-})
+  const { data, error } = await supabase.auth.signUp({
+    email: email.trim().toLowerCase(),
+    password,
+    options: {
+      data: {
+        name,
+        phone
+      }
+    }
+  })
 
   if (error) {
-    console.log(error.message);
+    console.log(error.message)
     const customMessage = mapSupabaseRegisterError(error.message)
-    
+
     throw new Error(customMessage)
   }
 

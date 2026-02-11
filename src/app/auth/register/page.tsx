@@ -1,15 +1,15 @@
 'use client'
 
-import RegisterForm from '@/components/authForm/RegisterForm'
-import AuthLayout from '@/components/layouts/AuthLayout'
+import RegisterForm from '@/components/organisms/RegisterForm'
+import AuthTemplate from '@/components/templates/AuthTemplate'
 
 export default function RegisterPage() {
   return (
-    <AuthLayout
+    <AuthTemplate
       title="Crea tu cuenta estelar"
       subtitle="Únete a la misión y accede a tu panel espacial"
     >
       <RegisterForm />
-    </AuthLayout>
+    </AuthTemplate>
   )
 }
