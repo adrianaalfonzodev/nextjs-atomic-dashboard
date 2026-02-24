@@ -50,5 +50,9 @@ export default async function DashboardLayout({
   children: React.ReactNode
 }) {
   const navItems = await detectDashboardPages()
-  return <DashboardTemplate navItems={navItems}>{children}</DashboardTemplate>
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <DashboardTemplate navItems={navItems}>{children}</DashboardTemplate>
+    </React.Suspense>
+  )
 }
