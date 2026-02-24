@@ -1,4 +1,3 @@
-import Label from '@/components/atoms/Label'
 import Textarea from '@/components/atoms/Textarea'
 
 type TextareaFieldProps = {
